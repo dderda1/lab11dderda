@@ -5,7 +5,8 @@
 
 1. Answer the following questions in Answers.md:
     - Try using a `TreeMap` and a `HashMap` instead of `MyHashMap`.
-        1. Are the resulting word frequencies any different? No pronouns included in MyHashMap!
+        1. Are the resulting word frequencies any different? 
+          -No pronouns included in MyHashMap!
         1. Is the time performance any different? If so, how would you rank the three implementations (in increasing order of time complexity)?
           - There were time differences. Here they are ranked best to worst: TreeMap, HashMap, MyHashmap
     - How are `%` and `Math.floorMod` different? Which works more reliably for computing a hash table index?
