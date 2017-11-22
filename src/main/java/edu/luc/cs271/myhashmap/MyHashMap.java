@@ -32,8 +32,8 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public int size() {
     // TODO add the sizes of all the chains DONE
     int result = 0;
-    for (int i=0; i<tableSize; i++){
-      int chain = table.get(i).size(); //refer to hashmap?
+    for (int i = 0; i < tableSize; i++) {
+      int chain = table.get(i).size(); // refer to hashmap?
       result = chain + result;
     }
 
@@ -51,19 +51,20 @@ public class MyHashMap<K, V> implements Map<K, V> {
     final int index = calculateIndex(key);
     System.out.println(table.get(index).toString());
     System.out.println(key.toString());
-    for (Entry<K, V> entry : table.get(index)){
-      if (entry.getKey().equals(key)){
+    for (Entry<K, V> entry : table.get(index)) {
+      if (entry.getKey().equals(key)) {
         return true;
       }
-    } return false;
+    }
+    return false;
   }
 
   @Override
   public boolean containsValue(final Object value) {
     // TODO follow basic approach of remove below (though this will be much simpler)DONE
-    for (List<Entry<K, V>> index : table){
-      for( Entry<K, V> entry : index){
-        if(entry.getValue().equals(value)){
+    for (List<Entry<K, V>> index : table) {
+      for (Entry<K, V> entry : index) {
+        if (entry.getValue().equals(value)) {
           return true;
         }
       }
@@ -76,13 +77,12 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public V get(final Object key) {
     // TODO follow basic approach of remove below (though this will be simpler) DONE
     final int index = calculateIndex(key);
-    final Iterator <Entry<K, V>> suffer = table.get(index).iterator();
-    while (suffer.hasNext()){
+    final Iterator<Entry<K, V>> suffer = table.get(index).iterator();
+    while (suffer.hasNext()) {
       final Entry<K, V> entry = suffer.next();
-      if (entry.getKey().equals(key)){
+      if (entry.getKey().equals(key)) {
         return entry.getValue();
-      }
-      else {
+      } else {
         return null;
       }
     }
@@ -93,8 +93,8 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public V put(final K key, final V value) {
     // TODO follow basic approach of remove below (this will be similar) DONE?
     final int index = calculateIndex(key);
-    for (Entry<K, V> entry : table.get(index)){
-      if (entry.getKey().equals(key)){
+    for (Entry<K, V> entry : table.get(index)) {
+      if (entry.getKey().equals(key)) {
         V crying = entry.getValue();
         entry.setValue(value);
         return crying;
@@ -141,7 +141,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     // TODO populate the set DONE
     for (int i = 0; i < tableSize; i++) {
       final Iterator<Entry<K, V>> emo = table.get(i).iterator();
-      while(emo.hasNext()){
+      while (emo.hasNext()) {
         Entry<K, V> janek = emo.next();
         result.add(janek.getKey());
       }
@@ -156,7 +156,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     // TODO populate the list DONE
     for (int i = 0; i < tableSize; i++) {
       final Iterator<Entry<K, V>> emo = table.get(i).iterator();
-      while(emo.hasNext()){
+      while (emo.hasNext()) {
         Entry<K, V> iamtheone = emo.next();
         result.add(iamtheone.getValue());
       }
@@ -171,7 +171,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     // TODO populate the set DONE
     for (int i = 0; i < tableSize; i++) {
       final Iterator<Entry<K, V>> emo = table.get(i).iterator();
-      while(emo.hasNext()){
+      while (emo.hasNext()) {
         Entry<K, V> beemovie = emo.next();
         result.add(beemovie);
       }
@@ -182,11 +182,12 @@ public class MyHashMap<K, V> implements Map<K, V> {
   @Override
   public String toString() {
     // TODO return the string representation of the underlying table DONE
-    for (int i = 0; i <tableSize; i++){
+    for (int i = 0; i < tableSize; i++) {
       final Iterator<Entry<K, V>> mariahcarey = table.get(i).iterator();
-      while(mariahcarey.hasNext()){
+      while (mariahcarey.hasNext()) {
         Entry<K, V> allIwantForChristmasIsYou = mariahcarey.next();
-        System.out.println(allIwantForChristmasIsYou.getKey() + " - " + allIwantForChristmasIsYou.getValue());
+        System.out.println(
+            allIwantForChristmasIsYou.getKey() + " - " + allIwantForChristmasIsYou.getValue());
       }
     }
     return "";
@@ -198,8 +199,8 @@ public class MyHashMap<K, V> implements Map<K, V> {
     } else if (!(that instanceof Map)) {
       return false;
     } else {
-      // TODO simply compare the entry sets
-    //  return false;
+      // TODO simply compare the entry sets DONE?
+      //  return false;
       return this.entrySet().equals(((Map) that).entrySet());
     }
   }
