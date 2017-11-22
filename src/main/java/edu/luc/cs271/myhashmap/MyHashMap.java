@@ -30,9 +30,12 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public int size() {
-    // TODO add the sizes of all the chains
+    // TODO add the sizes of all the chains DONE
     int result = 0;
-
+    for (i=0; i<tableSize; i++){
+      int chain = table.get(i).size(); //refer to hashmap?
+      result = chain + result;
+    }
 
     return result;
   }
@@ -44,17 +47,27 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public boolean containsKey(final Object key) {
-    // TODO follow basic approach of remove below (though this will be much simpler)
+    // TODO follow basic approach of remove below (though this will be much simpler) DONE
     final int index = calculateIndex(key);
-
-
-    return false;
+    System.out.println(table.get(index).toString());
+    System.out.println(key.toString());
+    for (Entry<K, V> entry : table.get(index)){
+      if (entry.getKey().equals(key)){
+        return true;
+      }
+    } return false;
   }
 
   @Override
   public boolean containsValue(final Object value) {
-    // TODO follow basic approach of remove below (though this will be much simpler)
-
+    // TODO follow basic approach of remove below (though this will be much simpler)DONE
+    for (List<Entry<K, V>> index : table){
+      for( Entry<K, V> entry : index){
+        if(entry.getValue().equals(value)){
+          return true;
+        }
+      }
+    }
 
     return false;
   }
