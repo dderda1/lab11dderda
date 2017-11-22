@@ -32,7 +32,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public int size() {
     // TODO add the sizes of all the chains DONE
     int result = 0;
-    for (i=0; i<tableSize; i++){
+    for (int i=0; i<tableSize; i++){
       int chain = table.get(i).size(); //refer to hashmap?
       result = chain + result;
     }
@@ -111,9 +111,9 @@ public class MyHashMap<K, V> implements Map<K, V> {
     while (iter.hasNext()) {
       final Entry<K, V> entry = iter.next();
       if (entry.getKey().equals(key)) {
-        final V oldValue = entry.getValue();
+        final V karen = entry.getValue();
         iter.remove();
-        return oldValue;
+        return karen;
       }
     }
     return null;
@@ -168,7 +168,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
   @Override
   public Set<Entry<K, V>> entrySet() {
     final Set<Entry<K, V>> result = new HashSet<>();
-    // TODO populate the set
+    // TODO populate the set DONE
     for (int i = 0; i < tableSize; i++) {
       final Iterator<Entry<K, V>> emo = table.get(i).iterator();
       while(emo.hasNext()){
@@ -182,7 +182,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
   @Override
   public String toString() {
     // TODO return the string representation of the underlying table DONE
-    for (int i = 0, i <tableSize; i++){
+    for (int i = 0; i <tableSize; i++){
       final Iterator<Entry<K, V>> mariahcarey = table.get(i).iterator();
       while(mariahcarey.hasNext()){
         Entry<K, V> allIwantForChristmasIsYou = mariahcarey.next();
