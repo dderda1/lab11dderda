@@ -11,12 +11,12 @@ import java.util.*;
  */
 public class MyHashMap<K, V> implements Map<K, V> {
 
-  private static final int DEFAULT_TABLE_SIZE = 11; // a prime
+  private static final int tableSize = 11; // a prime
 
   private List<List<Entry<K, V>>> table;
 
   public MyHashMap() {
-    this(DEFAULT_TABLE_SIZE);
+    this(tableSize);
   }
 
   public MyHashMap(final int tableSize) {
@@ -74,19 +74,33 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public V get(final Object key) {
-    // TODO follow basic approach of remove below (though this will be simpler)
+    // TODO follow basic approach of remove below (though this will be simpler) DONE
     final int index = calculateIndex(key);
-
-
+    final Iterator <Entry<K, V>> suffer = table.get(index).iterator();
+    while (suffer.hasNext()){
+      final Entry<K, V> entry = suffer.next();
+      if (entry.getKey().equals(key)){
+        return entry.getValue();
+      }
+      else {
+        return null;
+      }
+    }
     return null;
   }
 
   @Override
   public V put(final K key, final V value) {
-    // TODO follow basic approach of remove below (this will be similar)
+    // TODO follow basic approach of remove below (this will be similar) DONE?
     final int index = calculateIndex(key);
-
-
+    for (Entry<K, V> entry : table.get(index)){
+      if (entry.getKey().equals(key)){
+        V crying = entry.getValue();
+        entry.setValue(value);
+        return crying;
+      }
+    }
+    table.get(index).add(0, new AbstractMap.SimpleEntry<K, V>(key, value));
     return null;
   }
 
@@ -107,25 +121,31 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public void putAll(final Map<? extends K, ? extends V> m) {
-    // TODO add each entry in m's entrySet
-
-
+    // TODO add each entry in m's entrySet DONE?
+    for (final Entry<? extends K, ? extends V> entry : m.entrySet()) {
+      put(entry.getKey(), entry.getValue());
+    }
   }
 
   @Override
   public void clear() {
-    // TODO clear each chain
-
-
+    for (int i = 0; i < tableSize; i++) {
+      table.set(i, new LinkedList<>());
+    }
   }
 
   /** The resulting keySet is not "backed" by the Map, so we keep it unmodifiable. */
   @Override
   public Set<K> keySet() {
     final Set<K> result = new HashSet<>();
-    // TODO populate the set
-
-
+    // TODO populate the set DONE
+    for (int i = 0; i < tableSize; i++) {
+      final Iterator<Entry<K, V>> emo = table.get(i).iterator();
+      while(emo.hasNext()){
+        Entry<K, V> janek = emo.next();
+        result.add(janek.getKey());
+      }
+    }
     return Collections.unmodifiableSet(result);
   }
 
@@ -133,9 +153,14 @@ public class MyHashMap<K, V> implements Map<K, V> {
   @Override
   public Collection<V> values() {
     final List<V> result = new LinkedList<>();
-    // TODO populate the list
-
-
+    // TODO populate the list DONE
+    for (int i = 0; i < tableSize; i++) {
+      final Iterator<Entry<K, V>> emo = table.get(i).iterator();
+      while(emo.hasNext()){
+        Entry<K, V> iamtheone = emo.next();
+        result.add(iamtheone.getValue());
+      }
+    }
     return Collections.unmodifiableCollection(result);
   }
 
@@ -144,14 +169,26 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public Set<Entry<K, V>> entrySet() {
     final Set<Entry<K, V>> result = new HashSet<>();
     // TODO populate the set
-
-
+    for (int i = 0; i < tableSize; i++) {
+      final Iterator<Entry<K, V>> emo = table.get(i).iterator();
+      while(emo.hasNext()){
+        Entry<K, V> beemovie = emo.next();
+        result.add(beemovie);
+      }
+    }
     return Collections.unmodifiableSet(result);
   }
 
   @Override
   public String toString() {
-    // TODO return the string representation of the underlying table
+    // TODO return the string representation of the underlying table DONE
+    for (int i = 0, i <tableSize; i++){
+      final Iterator<Entry<K, V>> mariahcarey = table.get(i).iterator();
+      while(mariahcarey.hasNext()){
+        Entry<K, V> allIwantForChristmasIsYou = mariahcarey.next();
+        System.out.println(allIwantForChristmasIsYou.getKey() + " - " + allIwantForChristmasIsYou.getValue());
+      }
+    }
     return "";
   }
 
@@ -162,7 +199,8 @@ public class MyHashMap<K, V> implements Map<K, V> {
       return false;
     } else {
       // TODO simply compare the entry sets
-      return false;
+    //  return false;
+      return this.entrySet().equals(((Map) that).entrySet());
     }
   }
 
